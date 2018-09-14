@@ -1,0 +1,54 @@
+<template name="bluetooth$61f1a00c">
+  <view class="_div data-v-3c291bb2 bluetooth">
+    <view class="_div data-v-3c291bb2 status">
+      <text class="_text data-v-3c291bb2 status-text">蓝牙设配状态：</text>
+      <view class="_div data-v-3c291bb2 status-text1">{{msg}}</view>
+    </view>
+    <view class="_div data-v-3c291bb2 status">
+      <text class="_text data-v-3c291bb2 status-text">开启蓝牙设备搜索：</text>
+      <switch checked="{{searchDevice}}" bindchange="handleProxy" class="_switch data-v-3c291bb2 switch" color="#096DD9" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+    </view>
+    <view class="_div data-v-3c291bb2 devices">
+      <view class="_div data-v-3c291bb2 device-list">
+        <view class="_div data-v-3c291bb2 weui-cells__title" style="font-size: 13px">附近蓝牙设备</view>
+        <view class="_div data-v-3c291bb2 weui-cells weui-cells_after-title" wx:for="{{deviceList}}" wx:for-index="index" wx:for-item="device">
+          <view class="_div data-v-3c291bb2 weui-cell" bindtap="handleProxy" data-eventid="{{'1-'+index}}" data-comkey="{{$k}}">
+            <view class="_div data-v-3c291bb2 weui-cell__bd" style="font-size: 13px">设备名称：{{device.name}}</view>
+            <view class="_div data-v-3c291bb2 weui-cell__ft" style="font-size: 13px">设备ID: {{device.deviceId}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="_div data-v-3c291bb2 devices" wx:if="{{nowDevice}}">
+      <view class="_div data-v-3c291bb2 device-list">
+        <view class="_div data-v-3c291bb2 weui-cells__title" style="font-size: 13px">蓝牙设备详细信息</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">设备名称：{{currentDevice.name}}</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">设备ID：{{currentDevice.deviceId}}</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">信号强度：{{currentDevice.RSSI}}</view>
+        <button class="_button data-v-3c291bb2 weui-btn" type="default" style="font-size: 13px;margin-top: 0px;border-radius: 0 0 15px 15px;" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">连接蓝牙设备</button>
+      </view>
+    </view>
+    <view class="_div data-v-3c291bb2 devices" wx:if="{{nowService}}">
+      <view class="_div data-v-3c291bb2 device-list">
+        <view class="_div data-v-3c291bb2 weui-cells__title" style="font-size: 13px">成功连接的蓝牙设备信息</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">设备名称：{{currentDevice.name}}</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">设备ID：{{currentDevice.deviceId}}</view>
+        <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">信号强度：{{currentDevice.RSSI}}</view>
+        <view class="_view data-v-3c291bb2 weui-cells weui-cells_after-title">
+          <view class="_view data-v-3c291bb2 weui-cell weui-cell_input">
+            <view class="_view data-v-3c291bb2 weui-cell__bd">
+              <input class="_input data-v-3c291bb2 weui-input" bindinput="handleProxy" placeholder="请输入16进制数据" value="{{sendData}}" style="font-size: 15px" data-eventid="{{'3'}}" data-comkey="{{$k}}" />
+            </view>
+          </view>
+        </view>
+        <button class="_button data-v-3c291bb2 weui-btn" type="default" style="font-size: 13px;margin-top: 0px;border-radius: 0 0 15px 15px;" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">发送数据</button>
+        <button class="_button data-v-3c291bb2 weui-btn" type="default" style="font-size: 13px;margin-top: 0px;border-radius: 0 0 15px 15px;" bindtap="handleProxy" data-eventid="{{'5'}}" data-comkey="{{$k}}">接收数据</button>
+        <view class="_div data-v-3c291bb2 weui-cells__title" style="font-size: 13px">接收到的数据</view>
+        <view wx:for="{{reMessage}}" wx:for-index="index" wx:for-item="data" class="_div data-v-3c291bb2">
+          <view class="_div data-v-3c291bb2 weui-cell" style="font-size: 13px;background-color:white">0x: {{data}}</view>
+        </view>
+        <button class="_button data-v-3c291bb2 weui-btn" type="default" style="font-size: 13px;margin-top: 0px;border-radius: 0 0 15px 15px;" bindtap="handleProxy" data-eventid="{{'6'}}" data-comkey="{{$k}}">断开蓝牙连接</button>
+      </view>
+    </view>
+  </view>
+</template>

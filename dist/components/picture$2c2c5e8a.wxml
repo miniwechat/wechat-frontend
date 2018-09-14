@@ -1,0 +1,22 @@
+<template name="picture$2c2c5e8a">
+  <view class="_div data-v-8cb57012 weui-cell__bd">
+    <view class="_div data-v-8cb57012 weui-uploader">
+      <view class="_div data-v-8cb57012 weui-uploader__bd">
+        <view class="_div data-v-8cb57012 weui-uploader__file" id="uploaderFiles">
+          <block wx:key="index" key="{{index}}" wx:for="{{imgUrls}}" wx:for-index="index" wx:for-item="item">
+            <view class="_div data-v-8cb57012 weui-uploader__img">
+              <image src="{{item}}" mode="{{aspectFill}}" style="width: 80px;height: 80px" class="_img data-v-8cb57012"></image>
+            </view>
+          </block>
+        </view>
+        <view class="_div data-v-8cb57012 weui-uploader__file">
+          <block wx:key="index" key="{{index}}" wx:for="{{upUrls}}" wx:for-index="index" wx:for-item="item">
+            <view class="_div data-v-8cb57012 weui-uploader__img" bindtap="handleProxy" data-eventid="{{'0-'+index}}" data-comkey="{{$k}}">
+              <image src="{{item}}" mode="{{aspectFill}}" style="width: 80px;height: 80px;background-color: #D5D5D6" class="_img data-v-8cb57012"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

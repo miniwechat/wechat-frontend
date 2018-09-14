@@ -1,0 +1,87 @@
+@import "/static/css/vendor.wxss";
+
+.userinfo.data-v-62291a4b {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar.data-v-62291a4b {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname.data-v-62291a4b {
+  color: #aaa;
+}
+.usermotto.data-v-62291a4b {
+  margin-top: 300rpx;
+}
+.form-control.data-v-62291a4b {
+  display: block;
+  padding: 0 24rpx;
+  margin-bottom: 10rpx;
+  border: 2rpx solid #ccc;
+}
+.counter.data-v-62291a4b {
+  display: inline-block;
+  margin: 20rpx auto;
+  padding: 10rpx 20rpx;
+  color: blue;
+  border: 2rpx solid blue;
+}
+.picker_show.data-v-62291a4b {
+  display: flex;
+}
+.choose_button.data-v-62291a4b {
+  float: left;
+}
+.choose_show.data-v-62291a4b {
+  float: left;
+  margin-left: 6rpx;
+  font-size: 34rpx;
+}
+.placeholder.data-v-62291a4b {
+  margin: 10rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  background-color: #EBEBEB;
+  height: 1.7em;
+  line-height: 1.7em;
+  color: dimgray;
+}
+.weui-flex.data-v-62291a4b {
+  font-size: 26rpx;
+  display: flex;
+}
+.weui-flex__item.data-v-62291a4b {
+  flex: 1;
+}
+.scanMessage-list.data-v-62291a4b {
+  border: 6rpx dotted dodgerblue;
+  border-radius: 10rpx;
+}
+.split.data-v-62291a4b {
+  background-color: #C7C7C7;
+  height: 4rpx;
+  width: 98%;
+}
+.tag-out.data-v-62291a4b {
+  margin-top: 10rpx;
+  width: 120rpx;
+  height: 60rpx;
+  background: lightgray;
+  position: relative;
+  font-size: 32rpx;
+}
+.tag-inside.data-v-62291a4b {
+  background-color: transparent;
+  content: "test";
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 140rpx;
+  border-top: 30rpx solid transparent;
+  border-left: 60rpx solid lightgray;
+  border-bottom: 30rpx solid transparent;
+}

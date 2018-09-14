@@ -1,0 +1,82 @@
+<template name="index$2a9ab99e">
+  <view class="_div data-v-62291a4b">
+    <view class="_div data-v-62291a4b tag-out"> 二维码
+      <view class="_div data-v-62291a4b tag-inside"></view>
+    </view>
+    <view class="_div data-v-62291a4b">
+      <button style="margin-left: 20px;margin-top: 5px" bindtap="handleProxy" type="default" size="mini" data-eventid="{{'0'}}" data-comkey="{{$k}}" class="_button data-v-62291a4b">扫描二维码</button>
+      <view class="_div data-v-62291a4b scanMessage-list" style="margin: 10px" wx:if="{{show}}">
+        <view class="_div data-v-62291a4b weui-flex">
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">经度</view>
+          </view>
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">维度</view>
+          </view>
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">时间</view>
+          </view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex">
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">{{lot}}</view>
+          </view>
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">{{lat}}</view>
+          </view>
+          <view class="_div data-v-62291a4b weui-flex__item">
+            <view class="_div data-v-62291a4b placeholder">{{timestamp}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="_div data-v-62291a4b">{{show}}</view>
+      <button style="margin-left: 20px;margin-top: 5px" class="_button data-v-62291a4b weui-btn mini-btn" type="default" size="mini" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}">上传二维码信息</button>
+    </view>
+    <view class="_div data-v-62291a4b split"></view>
+    <view class="_div data-v-62291a4b tag-out"> 信息
+      <view class="_div data-v-62291a4b tag-inside"></view>
+    </view>
+    <view style="margin-top: 10px;margin-left: 20px" class="_div data-v-62291a4b">
+      <view class="_div data-v-62291a4b picker_show">
+        <picker bindchange="handleProxy" value="{{timeIndex}}" range="{{timeArray}}" class="_picker data-v-62291a4b choose_button" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+          <button type="default" size="mini" class="_button data-v-62291a4b"> 选择信息时间段 </button>
+        </picker>
+        <view class="_div data-v-62291a4b choose_show"> 当前选择：{{timeArray[timeIndex]}}</view>
+      </view>
+      <view class="_div data-v-62291a4b picker_show">
+        <picker bindchange="handleProxy" value="{{cateIndex}}" range="{{cateArray}}" class="_picker data-v-62291a4b choose_button" data-eventid="{{'3'}}" data-comkey="{{$k}}">
+          <button type="default" size="mini" class="_button data-v-62291a4b"> 获取信息的类型 </button>
+        </picker>
+        <view class="_div data-v-62291a4b choose_show"> 当前选择：{{cateArray[cateIndex]}}</view>
+      </view>
+    </view>
+    <button class="_button data-v-62291a4b weui-btn mini-btn" style="margin-top: 5px;margin-left: 35%" type="default" size="mini" bindtap="handleProxy" data-eventid="{{'4'}}" data-comkey="{{$k}}">获取信息</button>
+    <view class="_div data-v-62291a4b scanMessage-list" style="margin: 5px;">
+      <view class="_div data-v-62291a4b weui-flex">
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">id</view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">经度</view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">维度</view>
+        </view>
+      </view>
+      <view class="_div data-v-62291a4b weui-flex">
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">weui</view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">weui</view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">weui</view>
+        </view>
+        <view class="_div data-v-62291a4b weui-flex__item">
+          <view class="_div data-v-62291a4b placeholder">weui</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

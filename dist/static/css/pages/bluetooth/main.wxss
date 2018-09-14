@@ -1,0 +1,48 @@
+@import "/static/css/vendor.wxss";
+
+.status.data-v-3c291bb2 {
+  background-color: white;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 4rpx solid #e8e8e8;
+}
+.status-text.data-v-3c291bb2 {
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  width: 40%;
+}
+.status-text1.data-v-3c291bb2 {
+  height: 60rpx;
+  background-color: #e8e8e8;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  border-radius: 30rpx;
+  margin-top: 10rpx;
+  width: 50%;
+  text-align: center;
+  line-height: 60rpx;
+  color: black;
+}
+.switch.data-v-3c291bb2 {
+  margin-left: 20rpx;
+  width: 50%;
+  text-align: center;
+}
+.devices.data-v-3c291bb2 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.device-list.data-v-3c291bb2 {
+  margin-top: 30rpx;
+  font-size: 6rpx;
+  border: 6rpx solid #e8e8e8;
+  border-radius: 30rpx;
+  width: 94%;
+}
+.inputMessage.data-v-3c291bb2 {
+  text-align: center;
+  font-size: 26rpx;
+}

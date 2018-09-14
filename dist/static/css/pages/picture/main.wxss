@@ -1,0 +1,38 @@
+@import "/static/css/vendor.wxss";
+
+.weui-uploader__hd.data-v-8cb57012 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding-bottom: 20rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.weui-uploader__title.data-v-8cb57012 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.weui-uploader__info.data-v-8cb57012 {
+  color: #B2B2B2;
+}
+.weui-uploader__bd.data-v-8cb57012 {
+  margin-bottom: -8rpx;
+  margin-right: -18rpx;
+  overflow: hidden;
+}
+.weui-uploader__file.data-v-8cb57012 {
+  display: flex;
+  width: 100%;
+  margin: 20rpx;
+}
+.weui-uploader__img.data-v-8cb57012 {
+  display: block;
+  flex: 1;
+  margin: 10rpx;
+}
+img-test.data-v-8cb57012 {
+  z-index: 2;
+  background-color: #888888;
+}
