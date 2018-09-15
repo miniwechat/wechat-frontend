@@ -1,1 +1,1 @@
-<import src="../../components/bluetooth$61f1a00c" /><template is="bluetooth$61f1a00c" data="{{ ...$root['0'], $root }}"/>
+<import src="../../components/bluetooth$4d2bfdf7" /><template is="bluetooth$4d2bfdf7" data="{{ ...$root['0'], $root }}"/>

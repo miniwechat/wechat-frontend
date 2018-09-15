@@ -36,3 +36,14 @@ img-test.data-v-8cb57012 {
   z-index: 2;
   background-color: #888888;
 }
+.split.data-v-8cb57012 {
+  background-color: #C7C7C7;
+  height: 4rpx;
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 20rpx;
+}
+.download.data-v-8cb57012 {
+  margin-top: 20rpx;
+  width: 90%;
+}
