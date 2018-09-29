@@ -121,12 +121,33 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function data() {
     return {
-      imgUrls: ['http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'],
+      imgUrls: [['http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'], ['http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg', 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg']],
+      imgNames: [],
       upUrls: ['../../static/images/add.png'],
       imgOrViedo: true // 默认上传图片
     };
@@ -183,21 +204,13 @@ if (false) {(function () {
     },
     // TO DO verify the command of downloading files
     bindDownloadFile: function bindDownloadFile() {
+      var that = this;
       wx.request({
         url: 'http://192.168.19.164:3000/file/download',
         success: function success(res) {
           if (res.data.fileList && res.data.fileList.length > 0) {
             console.log(res.data);
-            wx.downloadFile({
-              url: 'http://192.168.19.164:3000/' + res.data.fileList[0].name,
-              success: function success(res) {
-                console.log(res.tempFilePath);
-              },
-
-              fail: function fail(res) {
-                console.log(res);
-              }
-            });
+            that.imgNames = res.data.fileList;
           } else {
             wx.showModal({
               title: '文件下载情况',
@@ -209,6 +222,39 @@ if (false) {(function () {
           console.log('fail');
         }
       });
+    },
+    downFile: function downFile(name) {
+      wx.downloadFile({
+        url: 'http://192.168.19.164:3000/' + name,
+        success: function success(res) {
+          console.log(res.tempFilePath);
+        },
+
+        fail: function fail(res) {
+          console.log(res);
+        }
+      });
+    },
+    downFiles: function downFiles(res) {
+      // let that = this
+      // for (let k = 0; k < res.length; k++) {
+      //   let length = that.imgUrls.length - 1
+      //   if (that.imgUrls[length].length % 3 === 0) {
+      //     that.imgUrls[length].push(res.tempFilePath[k])
+      //   } else {
+      //     that.imgUrls.push([])
+      //     that.imgUrls[length + 1].push(res.tempFilePath[k])
+      //   }
+      // }
+      // wx.downloadFile({
+      //   url: 'http://192.168.19.164:3000/' + res.name,
+      //   success (res) {
+      //     console.log(res.tempFilePath)
+      //   },
+      //   fail: function (res) {
+      //     console.log(res)
+      //   }
+      // })
     },
     uploadImage: function uploadImage() {
       wx.chooseImage({
@@ -260,7 +306,8 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
   return _c('div', [_c('div', {
     staticStyle: {
       "display": "flex",
-      "height": "45px"
+      "height": "45px",
+      "margin-top": "5px"
     }
   }, [_c('div', {
     staticStyle: {
@@ -297,57 +344,70 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
     on: {
       "click": _vm.bindUpImage
     }
-  }, [_vm._v("上传视频")]) : _vm._e()], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("上传视频")]) : _vm._e()], 1), _vm._v(" "), _c('button', {
+    staticClass: "download",
+    attrs: {
+      "eventid": '3'
+    },
+    on: {
+      "click": _vm.bindDownloadFile
+    }
+  }, [_vm._v("获取服务器文件列表")]), _vm._v(" "), _c('div', [_vm._v("文件名称列表(点击下载相应文件)")]), _vm._v(" "), _vm._l((_vm.imgNames), function(item, index) {
+    return _c('div', {
+      key: index
+    }, [_c('div', {
+      attrs: {
+        "eventid": '4-' + index
+      },
+      on: {
+        "click": function($event) {
+          _vm.downFile(item.name)
+        }
+      }
+    }, [_vm._v(_vm._s(item.name))])])
+  }), _vm._v(" "), _c('button', {
+    staticStyle: {
+      "width": "90%",
+      "margin-bottom": "10px"
+    },
+    attrs: {
+      "type": "primary",
+      "eventid": '5'
+    },
+    on: {
+      "click": function($event) {
+        _vm.downFiles(_vm.imgNames)
+      }
+    }
+  }, [_vm._v("下载所有文件")]), _vm._v(" "), _c('div', {
     staticClass: "weui-cell__bd"
   }, [_c('div', {
     staticClass: "weui-uploader"
   }, [_c('div', {
     staticClass: "weui-uploader__bd"
-  }, [_c('div', {
-    staticClass: "weui-uploader__file",
-    attrs: {
-      "id": "uploaderFiles"
-    }
   }, _vm._l((_vm.imgUrls), function(item, index) {
-    return _c('block', {
+    return _c('div', {
       key: index
     }, [_c('div', {
-      staticClass: "weui-uploader__img"
-    }, [_c('img', {
-      staticStyle: {
-        "width": "80px",
-        "height": "80px"
-      },
-      attrs: {
-        "src": item,
-        "mode": _vm.aspectFill
-      }
-    })])])
-  })), _vm._v(" "), _c('div', {
-    staticClass: "weui-uploader__file"
-  }, _vm._l((_vm.upUrls), function(item, index) {
-    return _c('block', {
-      key: index
-    }, [_c('div', {
-      staticClass: "weui-uploader__img",
-      attrs: {
-        "eventid": '3-' + index
-      },
-      on: {
-        "click": _vm.bindDownloadFile
-      }
-    }, [_c('img', {
-      staticStyle: {
-        "width": "80px",
-        "height": "80px",
-        "background-color": "#D5D5D6"
-      },
-      attrs: {
-        "src": item,
-        "mode": _vm.aspectFill
-      }
-    })])])
-  }))])])])])
+      staticClass: "weui-uploader__file"
+    }, _vm._l((item), function(items, indexs) {
+      return _c('block', {
+        key: indexs
+      }, [_c('div', {
+        staticClass: "weui-uploader__img"
+      }, [_c('img', {
+        staticStyle: {
+          "width": "80px",
+          "height": "80px",
+          "background-color": "#D5D5D6"
+        },
+        attrs: {
+          "src": items,
+          "mode": _vm.aspectFill
+        }
+      })])])
+    }))])
+  }))])])], 2)
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="display: flex;height: 45px">
+    <div style="display: flex;height: 45px;margin-top: 5px">
       <div style="line-height: 45px;margin-left: 20px">视频</div>
       <div style="line-height: 45px">
         <switch checked @change="switchImage"/>
@@ -9,23 +9,43 @@
       <button v-if="imgOrViedo" @click="bindUpImage">上传图片</button>
       <button v-if="!imgOrViedo" @click="bindUpImage">上传视频</button>
     </div>
+    <button @click="bindDownloadFile" class="download">获取服务器文件列表</button>
+    <div>文件名称列表(点击下载相应文件)</div>
+    <div v-for="(item,index) in imgNames" :key = index>
+      <div @click="downFile(item.name)">{{item.name}}</div>
+    </div>
+    <button type="primary" style="width: 90%;margin-bottom: 10px" @click="downFiles(imgNames)">下载所有文件</button>
     <div class="weui-cell__bd">
       <div class="weui-uploader">
         <div class="weui-uploader__bd">
-          <div class="weui-uploader__file" id="uploaderFiles">
-            <block v-for="(item,index) in imgUrls" :key="index">
-              <div class="weui-uploader__img">
-                <img :src="item"  :mode="aspectFill" style="width: 80px;height: 80px"/>
-              </div>
-            </block>
+          <div v-for="(item,index) in imgUrls" :key="index">
+            <div class="weui-uploader__file">
+              <block v-for="(items,indexs) in item" :key="indexs">
+                <div class="weui-uploader__img">
+                  <img :src="items"  :mode="aspectFill" style="width: 80px;height: 80px;background-color: #D5D5D6"/>
+                </div>
+              </block>
+            </div>
           </div>
-          <div class="weui-uploader__file">
-            <block v-for="(item,index) in upUrls" :key="index">
-              <div class="weui-uploader__img" @click="bindDownloadFile">
-                <img :src="item"  :mode="aspectFill" style="width: 80px;height: 80px;background-color: #D5D5D6"/>
-              </div>
-            </block>
-          </div>
+          <!--<div class="weui-uploader__file" id="uploaderFiles" v-for="(item,index) in imgUrls" :key="index">-->
+            <!--<block v-for="(items,indexs) in item" :key="indexs">-->
+              <!--<div style="display: flex;width: 100%;background-color: #586C94">-->
+                <!--<div class="weui-uploader__img">-->
+                  <!--<img :src="items"  :mode="aspectFill" style="width: 80px;height: 80px"/>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</block>-->
+          <!--</div>-->
+          <!--<div class="weui-uploader__file" id="uploaderFiles">-->
+            <!--<div v-for="(item,index) in imgUrls" :key="index">-->
+              <!---->
+            <!--</div>-->
+            <!--&lt;!&ndash;<block v-for="(item,index) in imgUrls" :key="index">&ndash;&gt;-->
+              <!--&lt;!&ndash;<div class="weui-uploader__img">&ndash;&gt;-->
+                <!--&lt;!&ndash;<img :src="item"  :mode="aspectFill" style="width: 80px;height: 80px"/>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</block>&ndash;&gt;-->
+          <!--</div>-->
         </div>
       </div>
       <!--<div class="split"></div>-->
@@ -42,10 +62,18 @@
     data () {
       return {
         imgUrls: [
-          'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-          'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-          'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+          [
+            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+          ],
+          [
+            'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+            'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+            'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+          ]
         ],
+        imgNames: [],
         upUrls: [
           '../../static/images/add.png'
         ],
@@ -105,20 +133,13 @@
       },
       // TO DO verify the command of downloading files
       bindDownloadFile: function () {
+        let that = this
         wx.request({
           url: 'http://192.168.19.164:3000/file/download',
           success: function (res) {
             if (res.data.fileList && res.data.fileList.length > 0) {
               console.log(res.data)
-              wx.downloadFile({
-                url: 'http://192.168.19.164:3000/' + res.data.fileList[0].name,
-                success (res) {
-                  console.log(res.tempFilePath)
-                },
-                fail: function (res) {
-                  console.log(res)
-                }
-              })
+              that.imgNames = res.data.fileList
             } else {
               wx.showModal({
                 title: '文件下载情况',
@@ -130,6 +151,38 @@
             console.log('fail')
           }
         })
+      },
+      downFile: function (name) {
+        wx.downloadFile({
+          url: 'http://192.168.19.164:3000/' + name,
+          success (res) {
+            console.log(res.tempFilePath)
+          },
+          fail: function (res) {
+            console.log(res)
+          }
+        })
+      },
+      downFiles: function (res) {
+        // let that = this
+        // for (let k = 0; k < res.length; k++) {
+        //   let length = that.imgUrls.length - 1
+        //   if (that.imgUrls[length].length % 3 === 0) {
+        //     that.imgUrls[length].push(res.tempFilePath[k])
+        //   } else {
+        //     that.imgUrls.push([])
+        //     that.imgUrls[length + 1].push(res.tempFilePath[k])
+        //   }
+        // }
+        // wx.downloadFile({
+        //   url: 'http://192.168.19.164:3000/' + res.name,
+        //   success (res) {
+        //     console.log(res.tempFilePath)
+        //   },
+        //   fail: function (res) {
+        //     console.log(res)
+        //   }
+        // })
       },
       uploadImage: function () {
         wx.chooseImage({
@@ -196,6 +249,12 @@
     margin-bottom: -4px;
     margin-right: -9px;
     overflow: hidden;
+    border:3px dotted dodgerblue;
+    border-radius: 3px;
+    width: 90%;
+    position: absolute;
+    align-content: center;
+    margin-left: 20px;
   }
   .weui-uploader__file {
     /*float: left;*/
@@ -204,10 +263,12 @@
     display: flex;
     width: 100%;
     margin: 10px;
+    /*background-color: red;*/
   }
   .weui-uploader__img {
     display: block;
     flex: 1;
+    /*width: 100px;*/
     margin: 5px;
   }
 

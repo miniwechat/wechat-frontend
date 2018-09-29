@@ -21,6 +21,12 @@
   margin-bottom: -8rpx;
   margin-right: -18rpx;
   overflow: hidden;
+  border: 6rpx dotted dodgerblue;
+  border-radius: 6rpx;
+  width: 90%;
+  position: absolute;
+  align-content: center;
+  margin-left: 40rpx;
 }
 .weui-uploader__file.data-v-8cb57012 {
   display: flex;
